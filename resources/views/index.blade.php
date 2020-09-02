@@ -7,7 +7,7 @@
         <meta name="description" content="Nosso principal objetivo é que nossos pacientes encontrem o médico perfeito e agende uma consulta do modo mais fácil possível. Essa jornada precisa ser agradável, por isso sempre estamos dispostos a ajudar." />
         <meta name="keywords" content="medico, agendar, consulta, online, agendar consulta, clinica"/>
         <meta name="author" content="Eduardo Nascimento"/>
-        <title>MedMazza</title>
+        <title>MedMazza | Agendamento de Consultas Online</title>
         <link rel="icon" href="{{ asset('img/landing/favicon.png') }}">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ asset('css/landing/bootstrap.min.css') }}">
@@ -61,8 +61,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn_2 d-none d-lg-block" href="#">Entrar</a>
-                            <a class="btn d-none d-lg-block" href="#">Registrar</a>
+                            <a class="btn_2 d-none d-lg-block" href="{{ route('login') }}">Entrar</a>
+                            <a class="btn d-none d-lg-block" href="{{ route('register') }}">Registrar</a>
                         </nav>
                     </div>
                 </div>
@@ -81,8 +81,7 @@
                                 <h1>Melhores Médicos</h1>
                                 <p>Aqui na MedMazza você encontra os melhores médicos da região,
                                     com um atendimento diferenciado e um agendamento muito fácil.</p>
-                                <a href="#" class="btn_2">Agende sua consulta</a>
-
+                                <a href="{{ route('login') }}" class="btn_2">Agende sua consulta</a>
                             </div>
                         </div>
                     </div>
