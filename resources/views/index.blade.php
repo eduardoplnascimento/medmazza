@@ -32,7 +32,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="index.html"> <img src="{{ asset('img/landing/logo.png') }}"
+                            <a class="navbar-brand" href="{{ route('index') }}"> <img src="{{ asset('img/landing/logo.png') }}"
                                     alt="logo"> MedMazza
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
