@@ -106,7 +106,7 @@
                         <div class="about_us_text">
                             <h2>Sobre Nós</h2>
                             <p>Nosso principal objetivo é que nossos pacientes encontrem o médico
-                                prefeito e agende uma consulta do modo mais fácil possível. Essa jornada
+                                perfeito e agende uma consulta do modo mais fácil possível. Essa jornada
                                 precisa ser agradável, por isso sempre estamos dispostos a ajudar. </p>
                             <div class="banner_item">
                                 <div class="single_item">
