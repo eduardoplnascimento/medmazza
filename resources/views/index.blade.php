@@ -2,8 +2,11 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <!-- Required meta tags -->
-        <meta charset=" utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Nosso principal objetivo é que nossos pacientes encontrem o médico perfeito e agende uma consulta do modo mais fácil possível. Essa jornada precisa ser agradável, por isso sempre estamos dispostos a ajudar." />
+        <meta name="keywords" content="medico, agendar, consulta, online, agendar consulta, clinica"/>
+        <meta name="author" content="Eduardo Nascimento"/>
         <title>MedMazza</title>
         <link rel="icon" href="{{ asset('img/landing/favicon.png') }}">
         <!-- Bootstrap CSS -->
