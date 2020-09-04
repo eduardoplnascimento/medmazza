@@ -11,7 +11,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::resource('users', 'UserController')->only(['update', 'edit']);
-    Route::resource('appointments', 'AppointmentsController');
+    Route::resource('appointments', 'AppointmentController');
     Route::resource('doctors', 'DoctorsController');
     Route::get('/users/history', 'UserController@history')->name('users.history');
 });

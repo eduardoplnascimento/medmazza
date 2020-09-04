@@ -17,13 +17,10 @@
                     <a href="{{ route('dashboard') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
                 <li data-username="Appointments" class="nav-item @yield('sidebar_appointments')">
-                    <a href="{{ route('appointments.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Agendamentos</span></a>
-                </li>
-                <li data-username="History" class="nav-item @yield('sidebar_history')">
-                    <a href="{{ route('users.history') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Consultas</span></a>
+                    <a href="{{ route('appointments.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">Agendamentos</span></a>
                 </li>
                 <li data-username="Doctors" class="nav-item @yield('sidebar_doctors')">
-                    <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Médicos</span></a>
+                    <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Médicos</span></a>
                 </li>
                 <li data-username="Configuration" class="nav-item @yield('sidebar_config')">
                     <a href="{{ route('users.edit', $user->id) }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Configuração</span></a>

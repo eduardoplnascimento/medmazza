@@ -40,6 +40,7 @@
                     <div class="dropdown-menu dropdown-menu-right profile-notification">
                         <div class="pro-head">
                             <img
+                                class="rounded-circle"
                                 src='{{ asset('img/pictures/' . $user->image ?? 'default.png') }}'
                                 alt="User-Profile-Image"
                             >

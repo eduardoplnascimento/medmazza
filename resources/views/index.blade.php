@@ -204,24 +204,34 @@
                                 <div class="col-xl-8">
                                     <h2>Nossos Médicos</h2>
                                     <div class="row">
-                                        <div class="col-lg-6 col-sm-6">
-                                            <img src="{{ asset('img/landing/doctor/doctor_1.png') }}" alt="doctor">
-                                            <h3>Dr. José Silva</h3>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <img class="img-shape" src="{{ asset('img/landing/doctor/1.jpg') }}" alt="doctor">
+                                            <h3>Dra. Adriana Galvão</h3>
                                             <p>Cardiologista</p>
                                         </div>
-                                        <div class="col-lg-6 col-sm-6">
-                                            <img src="{{ asset('img/landing/doctor/doctor_2.png') }}" alt="doctor">
-                                            <h3>Dr. Matheus Souza</h3>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <img class="img-shape" src="{{ asset('img/landing/doctor/2.jpg') }}" alt="doctor">
+                                            <h3>Dr. Manoel Corte Real</h3>
                                             <p>Pediatra</p>
                                         </div>
-                                        <div class="col-lg-6 col-sm-6">
-                                            <img src="{{ asset('img/landing/doctor/doctor_3.png') }}" alt="doctor">
-                                            <h3>Dr. Alan Turing </h3>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <img class="img-shape" src="{{ asset('img/landing/doctor/3.jpg') }}" alt="doctor">
+                                            <h3>Dra. Cecília Nascimento</h3>
                                             <p>Oftalmologista</p>
                                         </div>
-                                        <div class="col-lg-6 col-sm-6">
-                                            <img src="{{ asset('img/landing/doctor/doctor_4.png') }}" alt="doctor">
-                                            <h3>Dr. Aparecido Ponce</h3>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <img class="img-shape" src="{{ asset('img/landing/doctor/4.jpg') }}" alt="doctor">
+                                            <h3>Dr. Matheus Novaes</h3>
+                                            <p>Ortopedista</p>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <img class="img-shape" src="{{ asset('img/landing/doctor/5.jpg') }}" alt="doctor">
+                                            <h3>Dra. Maria Conceição</h3>
+                                            <p>Pediatra</p>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <img class="img-shape" src="{{ asset('img/landing/doctor/6.jpg') }}" alt="doctor">
+                                            <h3>Dr. Francisco Benício Cardoso</h3>
                                             <p>Ortopedista</p>
                                         </div>
                                     </div>

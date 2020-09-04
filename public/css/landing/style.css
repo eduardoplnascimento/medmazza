@@ -6248,4 +6248,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.img-shape {
+    /* border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%; */
+    border-radius: 50% 0 50% 0;
+}
+
 /*# sourceMappingURL=style.css.map */

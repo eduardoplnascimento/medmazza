@@ -21,7 +21,7 @@
                                     <div class="card shadow-sm">
                                         <div class="card-block customer-visitor">
                                             <h2 class="text-right mt-2 f-w-300">Próximo</h2>
-                                            <span class="text-right d-block h5">04/08 - 14:30</span>
+                                            <span class="text-right d-block h5">{{ $nextDate }}</span>
                                             <i class="material-icons text-c-blue">today</i>
                                         </div>
                                     </div>
@@ -31,7 +31,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card shadow-sm">
                                         <div class="card-block customer-visitor">
-                                            <h2 class="text-right mt-2 f-w-300">0</h2>
+                                            <h2 class="text-right mt-2 f-w-300">{{ $confirmed }}</h2>
                                             <span class="text-right d-block h5">Marcados</span>
                                             <i class="material-icons text-c-blue">event_available</i>
                                         </div>
@@ -42,7 +42,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card shadow-sm">
                                         <div class="card-block customer-visitor">
-                                            <h2 class="text-right mt-2 f-w-300">0</h2>
+                                            <h2 class="text-right mt-2 f-w-300">{{ $ended }}</h2>
                                             <span class="text-right d-block h5">Terminados</span>
                                             <i class="material-icons text-c-blue">schedule</i>
                                         </div>
@@ -50,36 +50,53 @@
                                 </div>
                                 <!--[ card-dash ] end-->
                                 <div class="dash-items-row">
-                                    <!--[ last-activities ] start-->
+                                    <!--[ last-appointments ] start-->
                                     <div class="col-xl-8 col-md-12">
                                         <div class="card User-Activity dash-items-col">
                                             <div class="card-header">
                                                 <h5>Próximos Atendimentos</h5>
                                             </div>
                                             <div class="card-block pb-0">
-                                                @if (true)
+                                                @if ($appointments->isNotEmpty())
                                                     <div class="table-responsive">
                                                         <table class="table table-hover">
                                                             <thead>
                                                                 <tr>
                                                                     <th colspan="2">Médico</th>
+                                                                    <th>Data</th>
                                                                     <th>Status</th>
+                                                                    <th class="text-right"></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @for ($i=1; $i<4; $i++)
+                                                                @foreach ($appointments as $appointment)
                                                                     <tr onclick="location.href='{{ route('users.edit', $user->id) }}'" style="cursor: pointer;">
                                                                         <td style="width: 70px;">
-                                                                            <img class="m-r-10" style="width:40px;" src="{{ asset('img/pictures/' . $i . '.jpg') }}" alt="doctor-image">
+                                                                            <img
+                                                                                class="m-r-10 rounded-circle"
+                                                                                style="width:40px;"
+                                                                                src="{{ asset('img/pictures/' . ($user->type === 'patient' ? $appointment->doctor->image : $appointment->patient->image)) }}"
+                                                                                alt="doctor-image"
+                                                                            >
                                                                         </td>
                                                                         <td>
-                                                                            <h6 class="m-0">{{ $user->name }}</h6>
+                                                                            <h6 class="m-0">
+                                                                                {{
+                                                                                    $user->type === 'patient'
+                                                                                        ? $appointment->doctor->name
+                                                                                        : $appointment->patient->name
+                                                                                }}
+                                                                            </h6>
                                                                         </td>
                                                                         <td>
-                                                                            <h6 class="m-0 text-c-yellow">Pendente</h6>
+                                                                            <h6 class="m-0">{{ $appointment->start_date->format('d/m H:i') }}</h6>
                                                                         </td>
+                                                                        <td>
+                                                                            <h6 class="m-0 text-c-{{ $appointment->getStatusColor() }}">{{ $appointment->status }}</h6>
+                                                                        </td>
+                                                                        <td class="text-right"><i class="fas fa-circle text-c-{{ $appointment->getStatusColor() }} f-10"></i></td>
                                                                     </tr>
-                                                                @endfor
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -89,15 +106,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--[ last-activities ] end-->
-                                    <!--[ last-courses ] start-->
+                                    <!--[ last-appointments ] end-->
+                                    <!--[ last-consults ] start-->
                                     <div class="col-xl-4 col-md-12">
                                         <div class="card User-Activity dash-items-col">
                                             <div class="card-header">
                                                 <h5>Últimas Consultas</h5>
                                             </div>
                                             <div class="card-block pb-0">
-                                                @if (true)
+                                                @if ($endedAppointments->isNotEmpty())
                                                     <div class="table-responsive">
                                                         <table class="table table-hover">
                                                             <thead>
@@ -106,16 +123,27 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @for ($i=1; $i<4; $i++)
+                                                                @foreach ($endedAppointments as $endedAppointment)
                                                                     <tr onclick="location.href='{{ route('users.edit', $user->id) }}'" style="cursor: pointer;">
                                                                         <td style="width: 70px;">
-                                                                            <img class="m-r-10" style="width:40px;" src="{{ asset('img/pictures/' . $i . '.jpg') }}" alt="doctor-image">
+                                                                            <img
+                                                                                class="m-r-10 rounded-circle"
+                                                                                style="width:40px;"
+                                                                                src="{{ asset('img/pictures/' . ($user->type === 'patient' ? $endedAppointment->doctor->image : $endedAppointment->patient->image)) }}"
+                                                                                alt="doctor-image"
+                                                                            >
                                                                         </td>
                                                                         <td>
-                                                                            <h6 class="m-0">{{ $user->name }}</h6>
+                                                                            <h6 class="m-0">
+                                                                                {{
+                                                                                    $user->type === 'patient'
+                                                                                        ? $endedAppointment->doctor->name
+                                                                                        : $endedAppointment->patient->name
+                                                                                }}
+                                                                            </h6>
                                                                         </td>
                                                                     </tr>
-                                                                @endfor
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -126,7 +154,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--[ last-courses ] end-->
+                                    <!--[ last-consults ] end-->
                                 </div>
                             </div>
                             <!-- [ Main Content ] end -->
