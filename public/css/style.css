@@ -1268,7 +1268,7 @@ p.text-muted {
 /*====== Padding , Margin css ends ======*/
 /*====== text-color, background color css starts ======*/
 .bg-c-blue {
-  background: #04a9f5;
+  background: #04a9f5 !important;
 }
 
 .text-c-blue {
@@ -1276,7 +1276,7 @@ p.text-muted {
 }
 
 .bg-c-red {
-  background: #f44236;
+  background: #f44236 !important;
 }
 
 .text-c-red {
@@ -1284,7 +1284,7 @@ p.text-muted {
 }
 
 .bg-c-green {
-  background: #1de9b6;
+  background: #1de9b6 !important;
 }
 
 .text-c-green {
@@ -1292,7 +1292,7 @@ p.text-muted {
 }
 
 .bg-c-yellow {
-  background: #f4c22b;
+  background: #f4c22b !important;
 }
 
 .text-c-yellow {
@@ -1300,7 +1300,7 @@ p.text-muted {
 }
 
 .bg-c-purple {
-  background: #a389d4;
+  background: #a389d4 !important;
 }
 
 .text-c-purple {

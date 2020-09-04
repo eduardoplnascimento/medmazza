@@ -5,7 +5,7 @@
         <meta name='csrf-token' content='{{ csrf_token() }}'>
 
         <title>MedMazza @yield('title')</title>
-
+        <link rel="icon" href="{{ asset('img/landing/favicon.png') }}">
         <!-- fontawesome icon -->
         <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
         <!-- material design icon -->
@@ -15,7 +15,7 @@
         <!-- vendor css -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
-    <body>
+    <body class="layout-6 bg-c-blue">
         <div class='content'>
             <!-- [ Pre-loader ] start -->
             <div class="loader-bg">

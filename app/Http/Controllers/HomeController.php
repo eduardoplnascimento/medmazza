@@ -8,15 +8,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        if ($user) {
-            return redirect('dashboard');
-        }
-        return view('signin');
+        return view('index');
     }
 
     public function signin()
     {
+        $user = auth()->user();
+        if ($user) {
+            return redirect('dashboard');
+        }
         return view('signin');
     }
 

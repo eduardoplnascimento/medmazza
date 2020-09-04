@@ -1,9 +1,9 @@
 <!-- [ navigation menu ] start -->
-<nav class="pcoded-navbar">
+<nav class="pcoded-navbar menu-light brand-lightblue icon-colored menupos-static">
     <div class="navbar-wrapper">
         <div class="navbar-brand header-logo">
             <a href="{{ route('dashboard') }}" class="b-brand">
-                <img class="if-logo-img" src="{{ asset('img/landing/logo.png') }}">
+                <img class="if-logo-img" src="{{ asset('img/landing/logo-white.png') }}">
                 <span class="b-title">MedMazza</span>
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
@@ -20,13 +20,13 @@
                     <a href="{{ route('appointments.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Agendamentos</span></a>
                 </li>
                 <li data-username="History" class="nav-item @yield('sidebar_history')">
-                    <a href="{{ route('history.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Consultas</span></a>
+                    <a href="{{ route('users.history') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Consultas</span></a>
                 </li>
                 <li data-username="Doctors" class="nav-item @yield('sidebar_doctors')">
                     <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Médicos</span></a>
                 </li>
                 <li data-username="Configuration" class="nav-item @yield('sidebar_config')">
-                    <a href="{{ route('user.config') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Configuração</span></a>
+                    <a href="{{ route('users.edit', $user->id) }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Configuração</span></a>
                 </li>
                 <li data-username="Logout" class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Logout</span></a>
