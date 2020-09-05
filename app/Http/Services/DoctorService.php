@@ -29,7 +29,8 @@ class DoctorService
                         ->where('appointments.start_date', $date)
                         ->where('status', '!=', 'cancelled');
                 })
-                ->get(['users.id', 'users.name', 'users.image']);
+                ->leftJoin('doctors', 'users.id', 'doctors.user_id')
+                ->get(['users.id', 'users.name', 'users.image', 'doctors.specialty']);
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,

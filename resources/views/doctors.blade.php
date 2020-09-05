@@ -47,7 +47,7 @@
                                                                     </div>
                                                                     <div class="col">
                                                                         <h5>{{ $doctor->name }}</h5>
-                                                                        <span>Ortopedista</span>
+                                                                        <span>{{ $doctor->doctor->specialty ?? 'Geral' }}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>

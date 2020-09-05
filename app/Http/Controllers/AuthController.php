@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Session;
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Session;
 
 class AuthController extends Controller
 {
@@ -14,7 +15,7 @@ class AuthController extends Controller
     public function signin(Request $request)
     {
         request()->validate([
-            'email' => 'required',
+            'email'    => 'required',
             'password' => 'required',
         ]);
 
@@ -33,7 +34,7 @@ class AuthController extends Controller
             $user = auth()->user();
             return response()->json([
                 'success' => true,
-                'user' => $user
+                'user'    => $user
             ]);
         }
         return response()->json(['success' => false]);
@@ -42,17 +43,22 @@ class AuthController extends Controller
     public function signup(Request $request)
     {
         request()->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
 
         $data = $request->all();
 
         $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
+            'api_token' => Str::random(80)
+        ]);
+
+        Patient::create([
+            'user_id' => $user->id
         ]);
 
         $credentials = $request->only('email', 'password');

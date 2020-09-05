@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Appointment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'image'
+        'name', 'email', 'password', 'image', 'api_token'
     ];
 
     /**
@@ -49,6 +51,25 @@ class User extends Authenticatable
         if ($this->type === 'admin') {
             return null;
         }
-        return $this->hasMany(Appointment::class, $this->type . '_id');
+        if ($this->type === 'patient') {
+            return $this->hasMany(Appointment::class, 'patient_id');
+        }
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
+
+    /**
+     * Get the user patient info.
+     */
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
+
+    /**
+     * Get the user doctor info.
+     */
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
     }
 }

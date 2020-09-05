@@ -8,12 +8,6 @@ Route::get('/', function (Request $request) {
 
 Route::post('auth', 'AuthController@makeAppLogin');
 
-Route::get('/teste', function (Request $request) {
-    $user = auth()->user();
-
-    return response()->json($user);
-});
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('doctors', 'API\DoctorController');
 });

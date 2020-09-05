@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Services\DoctorService;
 
 class DoctorController extends Controller
@@ -24,33 +25,12 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $doctors = User::where('type', 'doctor')->get();
+        $doctors = $this->userModel
+            ->where('type', 'patient')
+            ->with('appointments')
+            ->get();
 
-        return view('doctors', compact('user', 'doctors'));
-    }
-
-    public function getAvailableByDate(Request $request)
-    {
-        $serviceResponse = $this->doctorService->getAvailableByDate(
-            $request->date
-        );
-
-        if (!$serviceResponse->success) {
-            return response()->json($serviceResponse->errors);
-        }
-
-        return response()->json($serviceResponse->data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($doctors);
     }
 
     /**
@@ -61,7 +41,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //
     }
 
     /**
@@ -72,22 +52,11 @@ class DoctorController extends Controller
      */
     public function show(int $id)
     {
-        $user = auth()->user();
+        $doctor = $this->userModel
+            ->with('appointments')
+            ->find($id);
 
-        $doctor = $this->userModel->find($id);
-
-        return view('doctor', compact('user', 'doctor'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($doctor);
     }
 
     /**

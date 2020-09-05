@@ -10670,3 +10670,7 @@ div.code-toolbar > .toolbar span:hover {
 .border-none {
     border: none;
 }
+
+.config-avatar {
+    cursor: pointer;
+}
