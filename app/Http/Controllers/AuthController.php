@@ -26,6 +26,19 @@ class AuthController extends Controller
         return redirect()->back()->withError('Ops! Login incorreto.');
     }
 
+    public function makeAppLogin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $user = auth()->user();
+            return response()->json([
+                'success' => true,
+                'user' => $user
+            ]);
+        }
+        return response()->json(['success' => false]);
+    }
+
     public function signup(Request $request)
     {
         request()->validate([

@@ -279,6 +279,9 @@ p.text-muted {
     transform: scale(1.05);
     box-shadow: 0 0.7rem 1.5rem rgba(0,0,0,.175) !important;
 }
+.hover-md {
+    cursor: pointer;
+}
 .hover-md:hover {
     transform: scale(1.02);
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175) !important;
@@ -1305,6 +1308,14 @@ p.text-muted {
 
 .text-c-purple {
   color: #a389d4;
+}
+
+.bg-c-gray {
+  background: #95a5a6 !important;
+}
+
+.text-c-gray {
+  color: #95a5a6;
 }
 
 /*====== text-color css ends ======*/

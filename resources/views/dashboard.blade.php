@@ -62,7 +62,7 @@
                                                         <table class="table table-hover">
                                                             <thead>
                                                                 <tr>
-                                                                    <th colspan="2">Médico</th>
+                                                                    <th colspan="2">{{ $user->type === 'patient' ? 'Médico' : 'Paciente' }}</th>
                                                                     <th>Data</th>
                                                                     <th>Status</th>
                                                                     <th class="text-right"></th>
@@ -70,7 +70,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($appointments as $appointment)
-                                                                    <tr onclick="location.href='{{ route('users.edit', $user->id) }}'" style="cursor: pointer;">
+                                                                    <tr onclick="location.href='{{ route('appointments.show', $appointment->id) }}'" style="cursor: pointer;">
                                                                         <td style="width: 70px;">
                                                                             <img
                                                                                 class="m-r-10 rounded-circle"
@@ -119,12 +119,12 @@
                                                         <table class="table table-hover">
                                                             <thead>
                                                                 <tr>
-                                                                    <th colspan="2">Médico</th>
+                                                                    <th colspan="2">{{ $user->type === 'patient' ? 'Médico' : 'Paciente' }}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($endedAppointments as $endedAppointment)
-                                                                    <tr onclick="location.href='{{ route('users.edit', $user->id) }}'" style="cursor: pointer;">
+                                                                    <tr>
                                                                         <td style="width: 70px;">
                                                                             <img
                                                                                 class="m-r-10 rounded-circle"
@@ -150,7 +150,11 @@
                                                 @else
                                                     <p>Sem consultas</p>
                                                 @endif
-                                                <button type="button" class="btn btn-outline-primary" style="width: 100%; margin-bottom: 20px;"><i class="feather icon-plus-circle"></i>Agendar Consulta</button>
+                                                @if ($user->type === 'patient')
+                                                    <a href="{{ route('appointments.index') }}" class="btn btn-outline-primary" style="width: 100%; margin-bottom: 20px;">
+                                                        <i class="feather icon-plus-circle"></i>Agendar Consulta
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

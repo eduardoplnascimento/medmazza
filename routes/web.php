@@ -12,7 +12,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('users', 'UserController')->only(['update', 'edit']);
     Route::get('/appointments/load', 'AppointmentController@load')->name('appointments.load');
+    Route::get('/appointments/doctor/load', 'AppointmentController@loadDoctor')->name('appointments.doctor.load');
+    Route::get('/appointments/cancel/{id}', 'AppointmentController@cancel')->name('appointments.cancel');
     Route::resource('appointments', 'AppointmentController');
-    Route::resource('doctors', 'DoctorsController');
+    Route::get('/doctors/available', 'DoctorController@getAvailableByDate')->name('doctors.available');
+    Route::resource('doctors', 'DoctorController');
     Route::get('/users/history', 'UserController@history')->name('users.history');
 });
