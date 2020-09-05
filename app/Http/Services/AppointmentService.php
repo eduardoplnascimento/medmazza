@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use DB;
 use Carbon\Carbon;
 use App\Models\Appointment;
 
@@ -82,5 +83,44 @@ class AppointmentService
         }
 
         return $query->get();
+    }
+
+    public function loadAppointments(?string $startDate = null, ?string $endDate = null)
+    {
+        $user = auth()->user();
+
+        $query = $user->appointments();
+
+        if (!is_null($startDate)) {
+            $query = $query->where(
+                'start_date',
+                '>=',
+                Carbon::parse($startDate)->toDateTimeString()
+            );
+        }
+
+        if (!is_null($endDate)) {
+            $query = $query->where(
+                'end_date',
+                '<=',
+                Carbon::parse($endDate)->toDateTimeString()
+            );
+        }
+
+        if ($user->type === 'patient') {
+            return $query
+                ->join('users', 'users.id', 'appointments.doctor_id')
+                ->get([
+                    'appointments.id',
+                    'users.name as title',
+                    'start_date as start',
+                    DB::raw('CONCAT("bg-c-", color, " border-none") AS classNames'),
+                    DB::raw('CONCAT("/appointments/", appointments.id) AS url'),
+                ]);
+        }
+
+        return $query
+            ->join('users', 'users.id', 'appointments.patient_id')
+            ->get(['appointments.id', 'users.name as title', 'start_date as start', 'end_date as end', 'color']);
     }
 }

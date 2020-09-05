@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
+use App\Http\Services\AppointmentService;
 
 class AppointmentController extends Controller
 {
+    protected $appointmentService;
+
+    public function __construct(AppointmentService $appointmentService)
+    {
+        $this->appointmentService = $appointmentService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +25,17 @@ class AppointmentController extends Controller
     {
         $user = auth()->user();
 
-        dd($user->appointments);
-
         return view('appointments', compact('user'));
+    }
+
+    public function load(Request $request)
+    {
+        $appointments = $this->appointmentService->loadAppointments(
+            $request->start,
+            $request->end
+        );
+
+        return response()->json($appointments);
     }
 
     /**
@@ -49,7 +67,7 @@ class AppointmentController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**

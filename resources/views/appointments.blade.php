@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', '| Configuração')
-@section('sidebar_config', 'active')
+@section('title', '| Agendamentos')
+@section('sidebar_appointments', 'active')
 
 @section('content')
     <!-- [ Main Content ] start -->
@@ -35,8 +35,8 @@
                                         <div class="card-header">
                                             <h5>Seus Agendamentos</h5>
                                         </div>
-                                        <div class="card-block pb-0">
-
+                                        <div class="card-block pb-5" style="height: 600px;">
+                                            <div id="calendar"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -48,5 +48,43 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('plugins/fullcalendar/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar/locales-all.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                height: '100%',
+                expandRows: true,
+                locale: 'pt-br',
+                initialView: 'timeGridWeek',
+                events: "{{ route('appointments.load') }}",
+                allDaySlot: false,
+                slotMinTime: '08:00:00',
+                slotMaxTime: '19:00:00',
+                slotDuration: '01:00',
+                showNonCurrentDates: false,
+                hiddenDays: [0, 6],
+                businessHours: [
+                    {
+                        daysOfWeek: [ 1, 2, 3, 4, 5 ],
+                        startTime: '08:00',
+                        endTime: '13:00'
+                    },
+                    {
+                        daysOfWeek: [ 1, 2, 3, 4, 5 ],
+                        startTime: '14:00',
+                        endTime: '19:00'
+                    }
+                ],
+                dateClick: function(info) {
+                    console.log(info.date.getHours());
+                    console.log(info.date.getDay());
+                    alert('Date: ' + info.dateStr);
+                },
+            });
+            calendar.render();
+        });
+    </script>
     <!-- [ Main Content ] end -->
 @endsection

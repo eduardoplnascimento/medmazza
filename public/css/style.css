@@ -10655,3 +10655,7 @@ div.code-toolbar > .toolbar span:hover {
     width: 100%;
     border-radius: 50%;
 }
+
+.border-none {
+    border: none;
+}

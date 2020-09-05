@@ -1,5 +1,5 @@
 <!-- [ navigation menu ] start -->
-<nav class="pcoded-navbar menu-light brand-lightblue icon-colored menupos-static">
+<nav class="pcoded-navbar menu-light brand-blue icon-colored menupos-static">
     <div class="navbar-wrapper">
         <div class="navbar-brand header-logo">
             <a href="{{ route('dashboard') }}" class="b-brand">

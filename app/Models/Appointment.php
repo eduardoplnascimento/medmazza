@@ -11,7 +11,7 @@ class Appointment extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'patient_id', 'doctor_id', 'start_date', 'end_date', 'status'
+        'patient_id', 'doctor_id', 'start_date', 'end_date', 'status', 'color'
     ];
 
     protected $casts = [
@@ -33,21 +33,5 @@ class Appointment extends Model
     public function doctor()
     {
         return $this->belongsTo(User::class, 'doctor_id');
-    }
-
-    /**
-     * Get the status color.
-     */
-    public function getStatusColor()
-    {
-        if ($this->status === 'pending') {
-            return 'yellow';
-        }
-
-        if ($this->status === 'confirmed') {
-            return 'green';
-        }
-
-        return 'red';
     }
 }
