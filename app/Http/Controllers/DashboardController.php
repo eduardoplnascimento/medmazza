@@ -19,14 +19,16 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
+        if ($user->type === 'admin') {
+            $appointments = $this->appointmentService->getPendingAppointments();
+
+            return view('admin.dashboard', compact('user', 'appointments'));
+        }
+
         $nextDate = $this->appointmentService->getNextAppointmentDate();
-
         $confirmed = $this->appointmentService->getConfirmedAppointments(true);
-
         $ended = $this->appointmentService->getEndedAppointments(null, true);
-
         $appointments = $this->appointmentService->getNextAppointments(4);
-
         $endedAppointments = $this->appointmentService->getEndedAppointments(4);
 
         return view('dashboard', compact(

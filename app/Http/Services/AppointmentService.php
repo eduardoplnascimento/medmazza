@@ -20,6 +20,17 @@ class AppointmentService
         $this->appointmentModel = $appointmentModel;
     }
 
+    public function getPendingAppointments()
+    {
+        $appointments = $this->appointmentModel
+            ->where('status', 'pending')
+            ->where('end_date', '>', Carbon::now()->toDateTimeString())
+            ->orderBy('start_date')
+            ->get();
+
+        return $appointments;
+    }
+
     public function getNextAppointments(?int $limit = null)
     {
         $user = auth()->user();
@@ -138,6 +149,44 @@ class AppointmentService
             ]);
     }
 
+    public function loadAllAppointments(?string $startDate = null, ?string $endDate = null)
+    {
+        $user = auth()->user();
+
+        if ($user->type !== 'admin') {
+            return null;
+        }
+
+        $query = $this->appointmentModel->where('status', '!=', 'cancelled');
+
+        if (!is_null($startDate)) {
+            $query = $query->where(
+                'start_date',
+                '>=',
+                Carbon::parse($startDate)->toDateTimeString()
+            );
+        }
+
+        if (!is_null($endDate)) {
+            $query = $query->where(
+                'end_date',
+                '<=',
+                Carbon::parse($endDate)->toDateTimeString()
+            );
+        }
+
+        return $query
+            ->join('users', 'users.id', 'appointments.doctor_id')
+            ->get([
+                'appointments.id',
+                'users.name as title',
+                'start_date as start',
+                'end_date as end',
+                DB::raw('CONCAT("bg-c-", color, " border-none") AS classNames'),
+                DB::raw('CONCAT("/appointments/", appointments.id) AS url'),
+            ]);
+    }
+
     public function loadDoctorAppointments(
         int $doctorId,
         ?string $startDate = null,
@@ -173,7 +222,7 @@ class AppointmentService
             ]);
     }
 
-    public function store(string $startDate, int $doctorId)
+    public function store(string $startDate, int $doctorId, ?int $patientId)
     {
         try {
             $user = auth()->user();
@@ -182,7 +231,7 @@ class AppointmentService
             $startDate = Carbon::parse($startDate)->toDateTimeString();
 
             $storeParams = new StoreServiceParams(
-                $user->id,
+                $patientId ?? $user->id,
                 $doctorId,
                 $startDate,
                 $endDate
@@ -243,6 +292,38 @@ class AppointmentService
         return new ServiceResponse(
             true,
             'Agendamento cancelado com sucesso',
+            $appointment
+        );
+    }
+
+    public function confirm(int $appointmentId)
+    {
+        try {
+            $user = auth()->user();
+
+            if ($user->type !== 'admin') {
+                return new ServiceResponse(
+                    false,
+                    'Usuário não tem permissão para confirmar agendamento'
+                );
+            }
+
+            $appointment = $this->appointmentModel->find($appointmentId);
+            $appointment->status = 'confirmed';
+            $appointment->color = 'green';
+            $appointment->save();
+        } catch (\Throwable $th) {
+            return new ServiceResponse(
+                false,
+                'Erro ao confirmar agendamento',
+                null,
+                $th
+            );
+        }
+
+        return new ServiceResponse(
+            true,
+            'Agendamento confirmado com sucesso',
             $appointment
         );
     }

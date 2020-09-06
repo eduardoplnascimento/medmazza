@@ -18,6 +18,7 @@ class CreateDoctorsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('specialty')->nullable();
             $table->timestamp('birth_date')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

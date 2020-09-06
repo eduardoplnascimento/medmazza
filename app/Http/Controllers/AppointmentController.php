@@ -28,12 +28,26 @@ class AppointmentController extends Controller
     {
         $user = auth()->user();
 
+        if ($user->type === 'admin') {
+            return view('admin.appointments', compact('user'));
+        }
+
         return view('appointments', compact('user'));
     }
 
     public function load(Request $request)
     {
         $appointments = $this->appointmentService->loadAppointments(
+            $request->start,
+            $request->end
+        );
+
+        return response()->json($appointments);
+    }
+
+    public function loadAll(Request $request)
+    {
+        $appointments = $this->appointmentService->loadAllAppointments(
             $request->start,
             $request->end
         );
@@ -69,7 +83,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        $storeReponse = $this->appointmentService->store($request->date, $request->doctor);
+        $storeReponse = $this->appointmentService->store($request->date, $request->doctor, $request->patient);
 
         if (!$storeReponse->success) {
             return redirect()->back()->withError('Erro ao agendar consulta');
@@ -90,14 +104,18 @@ class AppointmentController extends Controller
 
         $query = $this->appointmentModel->where('id', $id);
 
-        if ($user->type !== 'admin') {
-            $query = $query->where(function ($query) use ($user) {
-                $query->where('patient_id', $user->id)
-                    ->orWhere('doctor_id', $user->id);
-            });
+        if ($user->type === 'admin') {
+            $appointment = $query->first();
+
+            return view('admin.appointment', compact('user', 'appointment'));
         }
 
-        $appointment = $query->first();
+        $appointment = $query
+            ->where(function ($query) use ($user) {
+                $query->where('patient_id', $user->id)
+                    ->orWhere('doctor_id', $user->id);
+            })
+            ->first();
 
         if (is_null($appointment)) {
             abort(404);
@@ -119,7 +137,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Cancel the appointment.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -133,6 +151,23 @@ class AppointmentController extends Controller
         }
 
         return redirect()->route('appointments.index')->withSuccess('Consulta cancelada!');
+    }
+
+    /**
+     * Confirm the appointment.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm(int $id)
+    {
+        $confirmReponse = $this->appointmentService->confirm($id);
+
+        if (!$confirmReponse->success) {
+            return redirect()->route('dashboard')->withError('Erro ao confirmar consulta');
+        }
+
+        return redirect()->route('dashboard')->withSuccess('Consulta confirmada!');
     }
 
     /**

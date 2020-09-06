@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

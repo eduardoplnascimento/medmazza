@@ -38,35 +38,45 @@
                                                 {{
                                                     $appointment->start_date->format('d/m H:i') .
                                                     ' - ' .
-                                                    ($user->type === 'patient'
-                                                        ? $appointment->doctor->name
-                                                        : $appointment->patient->name)
+                                                    $appointment->doctor->name .
+                                                    ' | ' .
+                                                    $appointment->patient->name
                                                 }}
                                             </h5>
                                         </div>
                                         <div class="card-block text-center">
-                                            <div class="text-center m-b-30">
-                                                <h5 class="mt-3">
-                                                    {{
-                                                        $user->type === 'patient'
-                                                            ? $appointment->doctor->name
-                                                            : $appointment->patient->name
-                                                    }}
-                                                </h5>
-                                                <span class="d-block mb-4">{{ $appointment->status }}</span>
-                                                <img
-                                                    class="img-fluid rounded-circle"
-                                                    style="width: 200px;max-width:100%;"
-                                                    src="{{ asset('img/pictures/' . ($user->type === 'patient' ? $appointment->doctor->image : $appointment->patient->image)) }}"
-                                                    alt="doctor"
-                                                >
-                                            </div>
-                                            <div class="row m-t-30">
+                                            <div class="row text-center m-b-30">
                                                 <div class="col-md-6 col-lg-6">
+                                                    <h5 class="mt-3">{{ $appointment->doctor->name }}</h5>
+                                                    <span class="d-block mb-4">{{ $appointment->doctor->doctor->specialty ?? 'Geral' }}</span>
+                                                    <img
+                                                        class="img-fluid rounded-circle"
+                                                        style="width: 200px;max-width:100%;"
+                                                        src="{{ asset('img/pictures/' . $appointment->doctor->image) }}"
+                                                        alt="doctor"
+                                                    >
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <h5 class="mt-3">{{ $appointment->patient->name }}</h5>
+                                                    <span class="d-block mb-4">{{ $appointment->patient->patient->blood_type ?? '-' }}</span>
+                                                    <img
+                                                        class="img-fluid rounded-circle"
+                                                        style="width: 200px;max-width:100%;"
+                                                        src="{{ asset('img/pictures/' . $appointment->patient->image) }}"
+                                                        alt="patient"
+                                                    >
+                                                </div>
+                                            </div>
+                                            <div class="row m-t-50">
+                                                <div class="col-md-4 col-lg-4">
+                                                    <h5>Status</h5>
+                                                    <span class="text-muted">{{ $appointment->status }}</span>
+                                                </div>
+                                                <div class="col-md-4 col-lg-4">
                                                     <h5>{{ $appointment->start_date->format('d/m H:i') }}</h5>
                                                     <span class="text-muted">Data de início</span>
                                                 </div>
-                                                <div class="col-md-6 col-lg-6">
+                                                <div class="col-md-4 col-lg-4">
                                                     <h5>{{ $appointment->start_date->format('d/m H:i') }}</h5>
                                                     <span class="text-muted">Data de término</span>
                                                 </div>

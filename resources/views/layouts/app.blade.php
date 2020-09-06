@@ -8,6 +8,7 @@
         <link rel="icon" href="{{ asset('img/landing/favicon.png') }}">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ asset('plugins/datatables/datatables.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/main.min.css') }}" />
         <!-- fontawesome icon -->
         <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
@@ -17,6 +18,7 @@
         <link rel="stylesheet" href="{{ asset('plugins/animation/css/animate.min.css') }}">
         <!-- vendor css -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
         <script src="{{ asset('plugins/jquery/js/jquery.min.js') }}"></script>
     </head>
     <body>

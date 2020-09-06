@@ -34,6 +34,13 @@
                                     <div class="card User-Activity">
                                         <div class="card-header">
                                             <h5>Todos os médicos</h5>
+                                            @if ($user->type === 'admin')
+                                                <div class="card-header-right">
+                                                    <a href="{{ route('doctors.create') }}" class="btn btn-icon btn-outline-primary">
+                                                        <i class="feather icon-plus"></i>
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="card-block text-center">
                                             <div class="row">
