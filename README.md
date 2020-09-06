@@ -120,3 +120,12 @@ Como médico dentro da plataforma, é possível:
 - Alterar as informações do perfil na aba **Configurações**.
 
 ![](https://i.imgur.com/mjQ7ihm.png)
+
+### API
+
+É possível receber dados dos médicos pelos endpoins:
+
+- GET /api/doctors
+- GET /api/doctor/{id}
+
+É necessário informar um token **Bearer** no parâmetro **Authorization** no cabeçalho da requisição. O token fica armazenado no campo **api_token** do usuário administrador. Ele pode ser recebido no endpoint **POST /api/auth** informando os campos **email** e **password** do usuário.
