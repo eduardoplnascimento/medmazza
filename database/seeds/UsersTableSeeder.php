@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'email'      => 'admin@teste.com',
             'type'       => 'admin',
             'password'   => Hash::make('123456'),
+            'api_token'  => Str::random(80),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
