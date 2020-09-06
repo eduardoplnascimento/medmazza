@@ -205,32 +205,32 @@
                                     <h2>Nossos Médicos</h2>
                                     <div class="row">
                                         <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/landing/doctor/1.jpg') }}" alt="doctor">
+                                            <img class="img-shape" src="{{ asset('img/pictures/1.jpg') }}" alt="doctor">
                                             <h3>Dra. Adriana Galvão</h3>
                                             <p>Cardiologista</p>
                                         </div>
                                         <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/landing/doctor/2.jpg') }}" alt="doctor">
+                                            <img class="img-shape" src="{{ asset('img/pictures/2.jpg') }}" alt="doctor">
                                             <h3>Dr. Manoel Corte Real</h3>
                                             <p>Pediatra</p>
                                         </div>
                                         <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/landing/doctor/3.jpg') }}" alt="doctor">
+                                            <img class="img-shape" src="{{ asset('img/pictures/3.jpg') }}" alt="doctor">
                                             <h3>Dra. Cecília Nascimento</h3>
                                             <p>Oftalmologista</p>
                                         </div>
                                         <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/landing/doctor/4.jpg') }}" alt="doctor">
+                                            <img class="img-shape" src="{{ asset('img/pictures/4.jpg') }}" alt="doctor">
                                             <h3>Dr. Matheus Novaes</h3>
                                             <p>Ortopedista</p>
                                         </div>
                                         <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/landing/doctor/5.jpg') }}" alt="doctor">
+                                            <img class="img-shape" src="{{ asset('img/pictures/5.jpg') }}" alt="doctor">
                                             <h3>Dra. Maria Conceição</h3>
                                             <p>Pediatra</p>
                                         </div>
                                         <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/landing/doctor/6.jpg') }}" alt="doctor">
+                                            <img class="img-shape" src="{{ asset('img/pictures/6.jpg') }}" alt="doctor">
                                             <h3>Dr. Francisco Benício Cardoso</h3>
                                             <p>Ortopedista</p>
                                         </div>

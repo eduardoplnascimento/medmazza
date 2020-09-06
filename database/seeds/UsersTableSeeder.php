@@ -76,5 +76,14 @@ class UsersTableSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        DB::table('users')->insert([
+            'name'       => 'Eduardo Nascimento',
+            'email'      => 'eduardonascimento@teste.com',
+            'type'       => 'patient',
+            'image'      => 'F6fMQY.jpeg',
+            'password'   => Hash::make('123456'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
