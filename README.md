@@ -96,7 +96,7 @@ Como adminitrador dentro da plataforma, é possível:
 - Criar, editar e remover médicos na aba **Médicos**;
 - Criar, editar e remover pacientes na aba **Pacientes**;
 - Criar e remover administradores na aba **Administradores**;
-- Alterar as informações do perfil na aba **Configurações**
+- Alterar as informações do perfil na aba **Configurações**.
 
 ![](https://i.imgur.com/XYu78CF.png)
 
@@ -107,7 +107,7 @@ Como paciente dentro da plataforma, é possível:
 - Ver últimos agendamentos solicitados, confirmados e cancelador na aba **Dashboard**;
 - Solicitar agendamentos de consultas na aba **Agendamentos**;
 - Solicitar agendamentos de consultas por médico na aba **Médicos**;
-- Alterar as informações do perfil na aba **Configurações**
+- Alterar as informações do perfil na aba **Configurações**.
 
 ![](https://i.imgur.com/azEluok.png)
 
@@ -117,6 +117,6 @@ Como médico dentro da plataforma, é possível:
 
 - Ver próximas consultadas agendadas por pacientes na aba **Dashboard**;
 - Ver agendamentos de consultas na aba **Agendamentos**;
-- Alterar as informações do perfil na aba **Configurações**
+- Alterar as informações do perfil na aba **Configurações**.
 
 ![](https://i.imgur.com/mjQ7ihm.png)
