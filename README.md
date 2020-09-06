@@ -24,14 +24,14 @@ Laravel 6.x
 
 ### Instalando
 
-- Primeiramente é necessária uma base de dados, para isso é preciso criar uma.
+- Primeiramente é necessária uma base de dados, para isso é preciso criar uma:
 
 ```
 CREATE DATABASE medmazza;
 GRANT ALL PRIVILEGES ON medmazza . * TO 'seu_usuario'@'localhost';
 ```
 
-- Clone o projeto para sua máquina (coloque na pasta do seu servidor WEB).
+- Clone o projeto para sua máquina (coloque na pasta do seu servidor WEB):
 
 ```
 git clone https://github.com/eduardoplnascimento/medmazza.git
@@ -89,31 +89,34 @@ php artisan serve
 
 ### Administrador
 
-- Como adminitrador dentro da plataforma, é possível:
-    - Confirmar agendamentos solicitados por pacientes na aba **Dashboard**;
-    - Agendar consultas para todos os pacientes na aba **Agendamentos**;
-    - Criar, editar e remover médicos na aba **Médicos**;
-    - Criar, editar e remover pacientes na aba **Pacientes**;
-    - Criar e remover administradores na aba **Administradores**;
-    - Alterar as informações do perfil na aba **Configurações**
+Como adminitrador dentro da plataforma, é possível:
+
+- Confirmar agendamentos solicitados por pacientes na aba **Dashboard**;
+- Agendar consultas para todos os pacientes na aba **Agendamentos**;
+- Criar, editar e remover médicos na aba **Médicos**;
+- Criar, editar e remover pacientes na aba **Pacientes**;
+- Criar e remover administradores na aba **Administradores**;
+- Alterar as informações do perfil na aba **Configurações**
 
 ![](https://i.imgur.com/XYu78CF.png)
 
 ### Paciente
 
-- Como paciente dentro da plataforma, é possível:
-    - Ver últimos agendamentos solicitados, confirmados e cancelador na aba **Dashboard**;
-    - Solicitar agendamentos de consultas na aba **Agendamentos**;
-    - Solicitar agendamentos de consultas por médico na aba **Médicos**;
-    - Alterar as informações do perfil na aba **Configurações**
+Como paciente dentro da plataforma, é possível:
+
+- Ver últimos agendamentos solicitados, confirmados e cancelador na aba **Dashboard**;
+- Solicitar agendamentos de consultas na aba **Agendamentos**;
+- Solicitar agendamentos de consultas por médico na aba **Médicos**;
+- Alterar as informações do perfil na aba **Configurações**
 
 ![](https://i.imgur.com/azEluok.png)
 
 ### Médico
 
-- Como médico dentro da plataforma, é possível:
-    - Ver próximas consultadas agendadas por pacientes na aba **Dashboard**;
-    - Ver agendamentos de consultas na aba **Agendamentos**;
-    - Alterar as informações do perfil na aba **Configurações**
+Como médico dentro da plataforma, é possível:
+
+- Ver próximas consultadas agendadas por pacientes na aba **Dashboard**;
+- Ver agendamentos de consultas na aba **Agendamentos**;
+- Alterar as informações do perfil na aba **Configurações**
 
 ![](https://i.imgur.com/mjQ7ihm.png)
