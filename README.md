@@ -3,7 +3,7 @@
 
 Faça com que a expriência do seu paciente seja ainda mais agradável com uma plataforma de gerênciamento de agendamentos de consultas. Toda a jornada de agendar uma consulta em apenas alguns cliques. Demo: https://medmazza.ml/
 
-[Imgur](https://i.imgur.com/KbHcORs.png)
+![](https://i.imgur.com/KbHcORs.png)
 
 ## Começando
 
@@ -81,11 +81,11 @@ php artisan serve
 
 - Acessando a URL do projeto, você será direcionado para a *landing page*, onde existem algumas informações sobre o consultório médico e a plataforma de agendamento.
 
-[Imgur](https://i.imgur.com/H1RqkLv.png)
+![](https://i.imgur.com/H1RqkLv.png)
 
 - A partir dessa página é possível fazer o *login* ou cadastrar-se. Caso queira acessar a plataforma como administrador e o comando de seed foi rodado, é possível com o email **admin@teste.com** e senha **123456**.
 
-[Imgur](https://i.imgur.com/ltjjyaC.png)
+![](https://i.imgur.com/ltjjyaC.png)
 
 ### Administrador
 
@@ -97,7 +97,7 @@ php artisan serve
     - Criar e remover administradores na aba **Administradores**;
     - Alterar as informações do perfil na aba **Configurações**
 
-[Imgur](https://i.imgur.com/XYu78CF.png)
+![](https://i.imgur.com/XYu78CF.png)
 
 ### Paciente
 
@@ -107,7 +107,7 @@ php artisan serve
     - Solicitar agendamentos de consultas por médico na aba **Médicos**;
     - Alterar as informações do perfil na aba **Configurações**
 
-[Imgur](https://i.imgur.com/azEluok.png)
+![](https://i.imgur.com/azEluok.png)
 
 ### Médico
 
@@ -116,4 +116,4 @@ php artisan serve
     - Ver agendamentos de consultas na aba **Agendamentos**;
     - Alterar as informações do perfil na aba **Configurações**
 
-[Imgur](https://i.imgur.com/mjQ7ihm.png)
+![](https://i.imgur.com/mjQ7ihm.png)
