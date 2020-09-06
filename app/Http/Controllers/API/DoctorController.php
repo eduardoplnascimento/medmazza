@@ -26,22 +26,11 @@ class DoctorController extends Controller
     public function index()
     {
         $doctors = $this->userModel
-            ->where('type', 'patient')
+            ->where('type', 'doctor')
             ->with('appointments')
             ->get();
 
         return response()->json($doctors);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -57,28 +46,5 @@ class DoctorController extends Controller
             ->find($id);
 
         return response()->json($doctor);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

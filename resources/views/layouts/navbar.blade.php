@@ -50,7 +50,7 @@
                             </a>
                         </div>
                         <ul class="pro-body">
-                            <li><a href="{{ route('appointments.index') }}" class="dropdown-item"><i class="feather icon-user"></i> Consultas</a></li>
+                            <li><a href="{{ route('appointments.index') }}" class="dropdown-item"><i class="feather icon-calendar"></i> Agendamentos</a></li>
                             <li><a href="{{ route('users.edit', $user->id) }}" class="dropdown-item"><i class="feather icon-settings"></i> Configuração</a></li>
                             <li><a href="{{ route('logout') }}" class="dropdown-item"><i class="feather icon-log-out"></i> Logout</a></li>
                         </ul>

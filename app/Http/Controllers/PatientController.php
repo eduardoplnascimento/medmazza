@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Services\UserService;
 use App\Http\Services\PatientService;
 
 class PatientController extends Controller
 {
     protected $userModel;
+    protected $userService;
     protected $patientService;
 
-    public function __construct(PatientService $patientService, User $userModel)
-    {
+    public function __construct(
+        User $userModel,
+        UserService $userService,
+        PatientService $patientService
+    ) {
         $this->userModel = $userModel;
+        $this->userService = $userService;
         $this->patientService = $patientService;
     }
 
@@ -25,9 +31,9 @@ class PatientController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $patients = User::where('type', 'patient')->get();
+        $patients = User::where('type', 'patient')->orderBy('name')->get();
 
-        return view('patients', compact('user', 'patients'));
+        return view('admin.patients', compact('user', 'patients'));
     }
 
     public function getAvailableByDate(Request $request)
@@ -50,7 +56,13 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+
+        if ($user->type === 'admin') {
+            return view('admin.patient-create', compact('user'));
+        }
+
+        abort(404);
     }
 
     /**
@@ -61,11 +73,23 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $user = auth()->user();
+
+        if ($user->type !== 'admin') {
+            return redirect(route('patients.index'))->withError('Usuário sem permissões!');
+        }
+
+        $storeResponse = $this->userService->store($request, 'patient');
+
+        if (!$storeResponse->success) {
+            return redirect(route('patients.index'))->withError('Erro ao criar usuário!');
+        }
+
+        return redirect(route('patients.index'))->withSuccess('Usuário criado com sucesso!');
     }
 
     /**
-     * Display the specified resource.
+     * Display and show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -76,18 +100,7 @@ class PatientController extends Controller
 
         $patient = $this->userModel->find($id);
 
-        return view('patient', compact('user', 'patient'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('admin.patient', compact('user', 'patient'));
     }
 
     /**
@@ -97,9 +110,15 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $updateResponse = $this->userService->update($id, $request);
+
+        if (!$updateResponse->success) {
+            return redirect(route('patients.show', $id))->withError('Erro ao editar usuário!');
+        }
+
+        return redirect(route('patients.show', $id))->withSuccess('Usuário editado com sucesso!');
     }
 
     /**
@@ -108,8 +127,20 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $user = auth()->user();
+
+        if ($user->type !== 'admin') {
+            return redirect(route('patients.index'))->withError('Usuário sem permissões!');
+        }
+
+        $destroyResponse = $this->userService->destroy($id);
+
+        if (!$destroyResponse->success) {
+            return redirect(route('patients.index'))->withError('Erro ao remover usuário!');
+        }
+
+        return redirect(route('patients.index'))->withSuccess('Usuário removido com sucesso!');
     }
 }

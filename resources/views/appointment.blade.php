@@ -67,11 +67,11 @@
                                                     <span class="text-muted">Data de início</span>
                                                 </div>
                                                 <div class="col-md-6 col-lg-6">
-                                                    <h5>{{ $appointment->start_date->format('d/m H:i') }}</h5>
+                                                    <h5>{{ $appointment->end_date->format('d/m H:i') }}</h5>
                                                     <span class="text-muted">Data de término</span>
                                                 </div>
                                             </div>
-                                            @if ($appointment->status !== 'cancelled')
+                                            @if ($appointment->status === 'pending')
                                                 <div class="designer m-t-30">
                                                     <a
                                                         href="{{ route('appointments.cancel', $appointment->id) }}"

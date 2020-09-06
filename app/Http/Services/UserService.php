@@ -31,20 +31,6 @@ class UserService
                 'password'  => Hash::make($request->password)
             ]);
 
-            if ($type === 'patient') {
-                Patient::create([
-                    'user_id' => $user->id
-                ]);
-                $user->refresh();
-            }
-
-            if ($type === 'doctor') {
-                Doctor::create([
-                    'user_id' => $user->id
-                ]);
-                $user->refresh();
-            }
-
             // Verifica se informou o arquivo e se é válido
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 // Define um aleatório para o arquivo baseado no timestamps atual
@@ -68,6 +54,11 @@ class UserService
             }
 
             if ($type === 'patient') {
+                Patient::create([
+                    'user_id' => $user->id
+                ]);
+                $user->refresh();
+
                 $patient = $user->patient;
                 $patient->blood_type = $request->blood;
                 $patient->social_number = $request->social;
@@ -75,9 +66,19 @@ class UserService
             }
 
             if ($type === 'doctor') {
+                Doctor::create([
+                    'user_id' => $user->id
+                ]);
+                $user->refresh();
+
                 $doctor = $user->doctor;
                 $doctor->specialty = $request->specialty;
                 $doctor->save();
+            }
+
+            if ($type === 'admin') {
+                $user->api_token = Str::random(80);
+                $user->save();
             }
         } catch (\Throwable $th) {
             return new ServiceResponse(
@@ -162,6 +163,27 @@ class UserService
         return new ServiceResponse(
             true,
             'Usuário editado com sucesso!',
+            $user
+        );
+    }
+
+    public function destroy(int $userId): ServiceResponse
+    {
+        try {
+            $user = $this->userModel->find($userId);
+            $user->delete();
+        } catch (\Throwable $th) {
+            return new ServiceResponse(
+                false,
+                'Erro ao remover usuário!',
+                null,
+                $th
+            );
+        }
+
+        return new ServiceResponse(
+            true,
+            'Usuário removido com sucesso!',
             $user
         );
     }

@@ -77,7 +77,7 @@
                                                     <span class="text-muted">Data de início</span>
                                                 </div>
                                                 <div class="col-md-4 col-lg-4">
-                                                    <h5>{{ $appointment->start_date->format('d/m H:i') }}</h5>
+                                                    <h5>{{ $appointment->end_date->format('d/m H:i') }}</h5>
                                                     <span class="text-muted">Data de término</span>
                                                 </div>
                                             </div>

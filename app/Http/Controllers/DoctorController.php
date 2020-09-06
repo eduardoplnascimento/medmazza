@@ -31,7 +31,7 @@ class DoctorController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $doctors = User::where('type', 'doctor')->get();
+        $doctors = User::where('type', 'doctor')->orderBy('name')->get();
 
         return view('doctors', compact('user', 'doctors'));
     }
@@ -89,7 +89,7 @@ class DoctorController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display and how the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -105,17 +105,6 @@ class DoctorController extends Controller
         }
 
         return view('doctor', compact('user', 'doctor'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -142,8 +131,20 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $user = auth()->user();
+
+        if ($user->type !== 'admin') {
+            return redirect(route('doctors.index'))->withError('Usuário sem permissões!');
+        }
+
+        $destroyResponse = $this->userService->destroy($id);
+
+        if (!$destroyResponse->success) {
+            return redirect(route('doctors.index'))->withError('Erro ao remover usuário!');
+        }
+
+        return redirect(route('doctors.index'))->withSuccess('Usuário removido com sucesso!');
     }
 }

@@ -27,7 +27,8 @@ class DoctorService
                     $query->from('appointments')
                         ->select('appointments.doctor_id')
                         ->where('appointments.start_date', $date)
-                        ->where('status', '!=', 'cancelled');
+                        ->where('status', '!=', 'cancelled')
+                        ->whereNull('deleted_at');
                 })
                 ->leftJoin('doctors', 'users.id', 'doctors.user_id')
                 ->get(['users.id', 'users.name', 'users.image', 'doctors.specialty']);

@@ -47,15 +47,17 @@ class AppointmentService
         return $query->get();
     }
 
-    public function getEndedAppointments(?int $limit = null, bool $isCount = false)
+    public function getEndedAppointments(?int $userId = null, ?int $limit = null, bool $isCount = false)
     {
-        $user = auth()->user();
-
-        $query = $user
-            ->appointments()
+        $query = $this->appointmentModel
             ->where('status', 'confirmed')
             ->where('end_date', '<', Carbon::now()->toDateTimeString())
             ->orderBy('end_date', 'desc');
+
+        if (!is_null($userId)) {
+            $user = $this->userModel->find($userId);
+            $query->where($user->type . '_id', $userId);
+        }
 
         if ($isCount) {
             return $query->count();
@@ -86,17 +88,18 @@ class AppointmentService
         return $query->start_date->format('d/m H:i');
     }
 
-    public function getConfirmedAppointments(bool $isCount = false)
+    public function getConfirmedAppointments(?int $userId = null, bool $isCount = false)
     {
-        $user = auth()->user();
+        $query = $this->appointmentModel
+            ->where('status', 'confirmed');
 
-        $query = $user
-            ->appointments()
-            ->where('status', 'confirmed')
-            ->orderBy('start_date', 'desc');
+        if (!is_null($userId)) {
+            $user = $this->userModel->find($userId);
+            $query->where($user->type . '_id', $userId);
+        }
 
         if ($isCount) {
-            return $query->count();
+            return $query->orderBy('start_date', 'desc')->count();
         }
 
         return $query->get();

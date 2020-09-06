@@ -34,8 +34,8 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = auth()->user();
             return response()->json([
-                'success' => true,
-                'user'    => $user
+                'success'   => true,
+                'api_token' => $user->api_token
             ]);
         }
         return response()->json(['success' => false]);
@@ -54,8 +54,7 @@ class AuthController extends Controller
         $user = User::create([
             'name'      => $data['name'],
             'email'     => $data['email'],
-            'password'  => Hash::make($data['password']),
-            'api_token' => Str::random(80)
+            'password'  => Hash::make($data['password'])
         ]);
 
         Patient::create([

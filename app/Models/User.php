@@ -43,14 +43,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function (User $user) {
+            foreach ($user->appointments as $appointment) {
+                $appointment->delete();
+            }
+        });
+    }
+
     /**
      * Get the user appointments.
      */
     public function appointments()
     {
-        if ($this->type === 'admin') {
-            return null;
-        }
         if ($this->type === 'patient') {
             return $this->hasMany(Appointment::class, 'patient_id');
         }

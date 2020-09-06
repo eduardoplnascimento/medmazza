@@ -19,9 +19,19 @@
                 <li data-username="Appointments" class="nav-item @yield('sidebar_appointments')">
                     <a href="{{ route('appointments.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">Agendamentos</span></a>
                 </li>
-                <li data-username="Doctors" class="nav-item @yield('sidebar_doctors')">
-                    <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Médicos</span></a>
-                </li>
+                @if ($user->type !== 'doctor')
+                    <li data-username="Doctors" class="nav-item @yield('sidebar_doctors')">
+                        <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Médicos</span></a>
+                    </li>
+                @endif
+                @if ($user->type === 'admin')
+                    <li data-username="Patients" class="nav-item @yield('sidebar_patients')">
+                        <a href="{{ route('patients.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Pacientes</span></a>
+                    </li>
+                    <li data-username="Admins" class="nav-item @yield('sidebar_admins')">
+                        <a href="{{ route('admins.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Administradores</span></a>
+                    </li>
+                @endif
                 <li data-username="Configuration" class="nav-item @yield('sidebar_config')">
                     <a href="{{ route('users.edit', $user->id) }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Configuração</span></a>
                 </li>

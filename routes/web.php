@@ -20,5 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/doctors/available', 'DoctorController@getAvailableByDate')->name('doctors.available');
     Route::resource('doctors', 'DoctorController');
     Route::get('/patients/available', 'PatientController@getAvailableByDate')->name('patients.available');
+    Route::resource('patients', 'PatientController');
+    Route::resource('admins', 'UserController');
     Route::get('/users/history', 'UserController@history')->name('users.history');
 });

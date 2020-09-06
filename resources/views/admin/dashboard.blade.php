@@ -13,10 +13,43 @@
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                             <div class="row">
+                                <!--[ card-dash ] start-->
+                                <div class="col-md-4 col-xl-4">
+                                    <div class="card shadow-sm">
+                                        <div class="card-block customer-visitor">
+                                            <h2 class="text-right mt-2 f-w-300">{{ $appointments->count() }}</h2>
+                                            <span class="text-right d-block h5">Pendentes</span>
+                                            <i class="material-icons text-c-blue">today</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ card-dash ] end-->
+                                <!--[ card-dash ] start-->
+                                <div class="col-md-4 col-xl-4">
+                                    <div class="card shadow-sm">
+                                        <div class="card-block customer-visitor">
+                                            <h2 class="text-right mt-2 f-w-300">{{ $confirmed }}</h2>
+                                            <span class="text-right d-block h5">Marcados</span>
+                                            <i class="material-icons text-c-blue">event_available</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ card-dash ] end-->
+                                <!--[ card-dash ] start-->
+                                <div class="col-md-4 col-xl-4">
+                                    <div class="card shadow-sm">
+                                        <div class="card-block customer-visitor">
+                                            <h2 class="text-right mt-2 f-w-300">{{ $ended }}</h2>
+                                            <span class="text-right d-block h5">Terminados</span>
+                                            <i class="material-icons text-c-blue">schedule</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ card-dash ] end-->
                                 <div class="col-sm-12">
                                     <div class="card User-Activity">
                                         <div class="card-header">
-                                            <h5>Novos Agendamentos</h5>
+                                            <h5>Agendamentos Pendentes</h5>
                                         </div>
                                         <div class="card-block text-center">
                                             <table id="tb-appointments" class="display" style="width:100%">
@@ -47,13 +80,13 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                            </div>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- [ Main Content ] end -->
                         </div>
+                        <!-- [ Main Content ] end -->
                     </div>
                 </div>
             </div>
