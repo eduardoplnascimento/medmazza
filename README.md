@@ -1,78 +1,119 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# MedMazza
+> Agendamento de consultas médicas online.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Faça com que a expriência do seu paciente seja ainda mais agradável com uma plataforma de gerênciamento de agendamentos de consultas. Toda a jornada de agendar uma consulta em apenas alguns cliques. Demo: https://medmazza.ml/
 
-## About Laravel
+[Imgur](https://i.imgur.com/KbHcORs.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Começando
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+As instruções a seguir vão adicionar uma cópia do projeto na sua máquina local para testes e desenvolvimento.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Pré-requisitos
 
-## Learning Laravel
+- Você precisa dos seguintes serviços instalados no seu computador:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+GIT
+Servidor WEB
+PHP 7.3
+MySQL
+Composer (https://getcomposer.org/)
+Laravel 6.x
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Instalando
 
-## Laravel Sponsors
+- Primeiramente é necessária uma base de dados, para isso é preciso criar uma.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+CREATE DATABASE medmazza;
+GRANT ALL PRIVILEGES ON medmazza . * TO 'seu_usuario'@'localhost';
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+- Clone o projeto para sua máquina (coloque na pasta do seu servidor WEB).
 
-## Contributing
+```
+git clone https://github.com/eduardoplnascimento/medmazza.git
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Entre no diretório **medmazza**.
+- Copie o arquivo .env.example e nomeie .env.
+- Configurar o arquivo .env com as suas informações:
 
-## Code of Conduct
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=medmazza
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Rodar o comando para gerar a chave do Laravel:
 
-## Security Vulnerabilities
+```
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Rodar o comando para instalação (pode demorar alguns minutos):
 
-## License
+```
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Rodar os comandos para migrar o banco de dados com alguns dados de teste:
+
+```
+php artisan migrate
+php artisan db:seed
+```
+
+## Abrir o servidor backend
+
+- Para rodar o servidor backend utilize o comando:
+
+```
+php artisan serve
+```
+
+## Utilização
+
+- Acessando a URL do projeto, você será direcionado para a *landing page*, onde existem algumas informações sobre o consultório médico e a plataforma de agendamento.
+
+[Imgur](https://i.imgur.com/H1RqkLv.png)
+
+- A partir dessa página é possível fazer o *login* ou cadastrar-se. Caso queira acessar a plataforma como administrador e o comando de seed foi rodado, é possível com o email **admin@teste.com** e senha **123456**.
+
+[Imgur](https://i.imgur.com/ltjjyaC.png)
+
+### Administrador
+
+- Como adminitrador dentro da plataforma, é possível:
+    - Confirmar agendamentos solicitados por pacientes na aba **Dashboard**;
+    - Agendar consultas para todos os pacientes na aba **Agendamentos**;
+    - Criar, editar e remover médicos na aba **Médicos**;
+    - Criar, editar e remover pacientes na aba **Pacientes**;
+    - Criar e remover administradores na aba **Administradores**;
+    - Alterar as informações do perfil na aba **Configurações**
+
+[Imgur](https://i.imgur.com/XYu78CF.png)
+
+### Paciente
+
+- Como paciente dentro da plataforma, é possível:
+    - Ver últimos agendamentos solicitados, confirmados e cancelador na aba **Dashboard**;
+    - Solicitar agendamentos de consultas na aba **Agendamentos**;
+    - Solicitar agendamentos de consultas por médico na aba **Médicos**;
+    - Alterar as informações do perfil na aba **Configurações**
+
+[Imgur](https://i.imgur.com/azEluok.png)
+
+### Médico
+
+- Como médico dentro da plataforma, é possível:
+    - Ver próximas consultadas agendadas por pacientes na aba **Dashboard**;
+    - Ver agendamentos de consultas na aba **Agendamentos**;
+    - Alterar as informações do perfil na aba **Configurações**
+
+[Imgur](https://i.imgur.com/mjQ7ihm.png)
