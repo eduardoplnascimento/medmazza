@@ -38,7 +38,12 @@ git clone https://github.com/eduardoplnascimento/medmazza.git
 ```
 
 - Entre no diretório **medmazza**.
-- Copie o arquivo .env.example e nomeie .env.
+- Copie o arquivo .env.example e nomeie .env:
+
+```
+cp .env.example .env
+```
+
 - Configurar o arquivo .env com as suas informações:
 
 ```
@@ -50,16 +55,16 @@ DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
 ```
 
-- Rodar o comando para gerar a chave do Laravel:
-
-```
-php artisan key:generate
-```
-
 - Rodar o comando para instalação (pode demorar alguns minutos):
 
 ```
 composer install
+```
+
+- Rodar o comando para gerar a chave do Laravel:
+
+```
+php artisan key:generate
 ```
 
 - Rodar os comandos para migrar o banco de dados com alguns dados de teste:
