@@ -70,8 +70,13 @@ php artisan key:generate
 - Rodar os comandos para migrar o banco de dados com alguns dados de teste:
 
 ```
-php artisan migrate
-php artisan db:seed
+php artisan migrate --seed
+```
+
+- Dar permissão para o servidor WEB:
+
+```
+sudo chown -Rf $USER:www-data .
 ```
 
 ## Abrir o servidor backend
