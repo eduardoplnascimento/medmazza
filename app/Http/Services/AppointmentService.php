@@ -99,10 +99,10 @@ class AppointmentService
         }
 
         if ($isCount) {
-            return $query->orderBy('start_date', 'desc')->count();
+            return $query->count();
         }
 
-        return $query->get();
+        return $query->orderBy('start_date', 'desc')->get();
     }
 
     public function loadAppointments(?string $startDate = null, ?string $endDate = null)

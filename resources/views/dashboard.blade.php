@@ -92,7 +92,7 @@
                                                                             <h6 class="m-0">{{ $appointment->start_date->format('d/m H:i') }}</h6>
                                                                         </td>
                                                                         <td>
-                                                                            <h6 class="m-0 text-c-{{ $appointment->color }}">{{ $appointment->status }}</h6>
+                                                                            <h6 class="m-0 text-c-{{ $appointment->color }}">{{ $appointment->present()->status }}</h6>
                                                                         </td>
                                                                         <td class="text-right"><i class="fas fa-circle text-c-{{ $appointment->color }} f-10"></i></td>
                                                                     </tr>

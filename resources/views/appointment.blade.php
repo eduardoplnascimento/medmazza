@@ -53,7 +53,7 @@
                                                             : $appointment->patient->name
                                                     }}
                                                 </h5>
-                                                <span class="d-block mb-4">{{ $appointment->status }}</span>
+                                                <span class="d-block mb-4">{{ $appointment->present()->status }}</span>
                                                 <img
                                                     class="img-fluid rounded-circle"
                                                     style="width: 200px;max-width:100%;"

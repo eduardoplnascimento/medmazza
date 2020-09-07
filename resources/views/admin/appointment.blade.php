@@ -70,7 +70,7 @@
                                             <div class="row m-t-50">
                                                 <div class="col-md-4 col-lg-4">
                                                     <h5>Status</h5>
-                                                    <span class="text-muted">{{ $appointment->status }}</span>
+                                                    <span class="text-muted">{{ $appointment->present()->status }}</span>
                                                 </div>
                                                 <div class="col-md-4 col-lg-4">
                                                     <h5>{{ $appointment->start_date->format('d/m H:i') }}</h5>
