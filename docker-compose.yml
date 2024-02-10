@@ -1,0 +1,67 @@
+version: "3.7"
+
+# Networks
+networks:
+  # Internal network
+  internal:
+    driver: bridge
+
+# Volumes
+volumes:
+  # MySQL volume
+  medmazza-mysql_data:
+    driver: local
+
+# Services
+services:
+  # MySQL
+  medmazza-mysql:
+    image: mysql:5.7
+    container_name: ${APP_NAME}_db
+    networks:
+      - internal
+    volumes:
+    # Os volumes ficam no diretório /var/lib/docker/volumes/
+      - medmazza-mysql_data:/var/lib/mysql
+      - .:/var/www/app
+    working_dir: /var/www/app
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+
+  # Nginx
+  medmazza-nginx:
+    image: webdevops/php-nginx-dev:7.3
+    container_name: ${APP_NAME}_web
+    networks:
+      - internal
+    depends_on:
+      - medmazza-mysql
+    volumes:
+      - .:/var/www/app
+    working_dir: /var/www/app
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/app/public
+      - PHP_DATE_TIMEZONE=UTC
+      - PHP_DISPLAY_ERRORS=0
+      - WEB_DOCUMENT_INDEX=index.php
+      - PHP_MEMORY_LIMIT=4096M
+      - PHP_MAX_EXECUTION_TIME=86400
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILESIZE=500M
+      - PHP_DEBUGGER="xdebug"
+      # - PHP_IDE_CONFIG="serverName=_"
+      # xdebug v3
+      - XDEBUG_MODE=debug
+      - XDEBUG_START_WITH_REQUEST=yes
+      - XDEBUG_CLIENT_HOST=host.docker.internal
+      - XDEBUG_CLIENT_PORT=9090
+      - XDEBUG_OUTPUT_DIR=/var/www/app/.xdebug
+    expose:
+      - 9090
+    ports:
+      - "8080:80"
