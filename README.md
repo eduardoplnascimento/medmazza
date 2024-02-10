@@ -163,7 +163,7 @@ Como paciente dentro da plataforma, é possível:
 
 Como médico dentro da plataforma, é possível:
 
-- Ver próximas consultadas agendadas por pacientes na aba **Dashboard**;
+- Ver próximas consultas agendadas por pacientes na aba **Dashboard**;
 - Ver agendamentos de consultas na aba **Agendamentos**;
 - Alterar as informações do perfil na aba **Configurações**.
 
@@ -171,7 +171,7 @@ Como médico dentro da plataforma, é possível:
 
 ### API
 
-É possível receber dados dos médicos pelos endpoins:
+É possível receber dados dos médicos pelos endpoints:
 
 - GET /api/doctors
 - GET /api/doctor/{id}
