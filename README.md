@@ -93,7 +93,7 @@ php artisan serve
 ### Docker
 
 - Entre no diretório **medmazza**.
-- Copie o arquivo .env.example e nomeie .env:
+- Copie o arquivo .env.docker e nomeie .env:
 
 ```
 cp .env.docker .env
