@@ -9,7 +9,7 @@ Faça com que a expriência do seu paciente seja ainda mais agradável com uma p
 
 As instruções a seguir vão adicionar uma cópia do projeto na sua máquina local para testes e desenvolvimento.
 
-### Pré-requisitos
+## Pré-requisitos
 
 - Você precisa dos seguintes serviços instalados no seu computador:
 
@@ -20,9 +20,12 @@ PHP 7.3
 MySQL
 Composer (https://getcomposer.org/)
 Laravel 6.x
+Docker (se for utilizar containers)
 ```
-
-### Instalando
+## instalação
+- [1. Servidor Embutido PHP](#servidor-embutido-php)
+- [2. Docker](#docker)
+### Servidor Embutido PHP
 
 - Primeiramente é necessária uma base de dados, para isso é preciso criar uma:
 
@@ -79,13 +82,48 @@ php artisan migrate --seed
 sudo chown -Rf $USER:www-data .
 ```
 
-## Abrir o servidor backend
+### Abrir o servidor backend
 
 - Para rodar o servidor backend utilize o comando:
 
 ```
 php artisan serve
 ```
+
+### Docker
+
+- Entre no diretório **medmazza**.
+- Copie o arquivo .env.docker e nomeie .env:
+
+```
+cp .env.docker .env
+```
+
+- Suba os containers:
+
+```
+docker-compose up -d
+```
+
+- Rodar o comando para instalação (pode demorar alguns minutos):
+
+```
+docker exec Medmazza_web composer install
+```
+
+- Rodar o comando para gerar a chave do Laravel:
+
+```
+docker exec Medmazza_web php artisan key:generate
+```
+
+- Rodar os comandos para migrar o banco de dados com alguns dados de teste:
+
+```
+docker exec Medmazza_web php artisan migrate --seed
+```
+
+- Acesse a aplicação [aqui](http://localhost:8080)
 
 ## Utilização
 
@@ -125,7 +163,7 @@ Como paciente dentro da plataforma, é possível:
 
 Como médico dentro da plataforma, é possível:
 
-- Ver próximas consultadas agendadas por pacientes na aba **Dashboard**;
+- Ver próximas consultas agendadas por pacientes na aba **Dashboard**;
 - Ver agendamentos de consultas na aba **Agendamentos**;
 - Alterar as informações do perfil na aba **Configurações**.
 
@@ -133,7 +171,7 @@ Como médico dentro da plataforma, é possível:
 
 ### API
 
-É possível receber dados dos médicos pelos endpoins:
+É possível receber dados dos médicos pelos endpoints:
 
 - GET /api/doctors
 - GET /api/doctor/{id}
